@@ -1,14 +1,13 @@
 class Solution {
   public:
     bool twoSum(vector<int>& arr, int target) {
-        unordered_set<int> s;
+        unordered_set<int> st;
         
         for (int x : arr) {
-            int need = target - x;
-            if (s.find(need) != s.end()) {
+            if (st.count(target - x)) {
                 return true;
             }
-            s.insert(x);
+            st.insert(x);
         }
         return false;
     }
