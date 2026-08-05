@@ -2,24 +2,23 @@ class Solution {
   public:
     int maxSubarraySum(vector<int>& arr, int k) {
         // code here
-        int low=0;
+        int low=0,sum=0;
         int high=k-1;
-        int sum=0;
-        for(int i=low;i<=high;i++){
-            sum=sum+arr[i];
+        for(int i=0;i<k;i++){
+            sum+=arr[i];
         }
+        int maxi=INT_MIN;
         int n=arr.size();
-        int res=0;
         while(high<n){
-            res=max(sum,res);
-            low++;
-            high++;
+            maxi=max(maxi,sum);
+            low++;high++;
+            sum=sum-arr[low-1];
             if(high==n){
                 break;
             }
-            sum=sum-arr[low-1]+arr[high];
-            
+            sum=sum+arr[high];
         }
-        return res;
+        return maxi;
+        
     }
 };
